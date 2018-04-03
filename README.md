@@ -1,6 +1,6 @@
 # moltin-shippo-tracking
 
-> ⚡️ Update orders with current delivery status by Shippo
+> 📦 Update orders with current delivery status by Shippo
 
 [![Deploy to now](https://deploy.now.sh/static/button.svg)](https://deploy.now.sh/?repo=https://github.com/notrab/moltin-shippo-integration&env=MOLTIN_CLIENT_ID&env=MOLTIN_SECRET_KEY&env=SHIPPO_PRIVATE_KEY&env=MOLTIN_WEBHOOK_SECRET)
 
