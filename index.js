@@ -8,14 +8,9 @@ const moltin = motlinGateway({
   client_secret: process.env.MOLTIN_CLIENT_SECRET
 })
 
-const moltinSecret = process.env.MOLTIN_SECRET_KEY
-
 module.exports = cors(
   router(
     post('/', async (req, res) => {
-      if ((await req.headers['x-moltin-secret-key']) != moltinSecret)
-        return send(res, 401)
-
       const {
         data: {
           tracking_status: {
@@ -23,13 +18,17 @@ module.exports = cors(
             status_details: delivery_details,
             status_date: delivery_date
           },
-          extra: { orderId }
+          extra: { order_id }
         }
       } = await json(req)
 
       try {
-        const order = await moltin.Orders.Update(orderId, {
-          id: orderId,
+        const { json: { data: order } } = await moltin.Orders.Get(order_id)
+
+        if (order.delivery_status === 'DELIVERED') send(res, 400)
+
+        await moltin.Orders.Update(order_id, {
+          id: order_id,
           delivery_status,
           delivery_details,
           delivery_date

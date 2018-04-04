@@ -15,7 +15,6 @@ Create a `.env` at the project root with the following credentials.
 ```dosini
 MOLTIN_CLIENT_ID=
 MOLTIN_CLIENT_SECRET=
-MOLTIN_SECRET_KEY=
 ```
 
 `npm install`
@@ -26,13 +25,40 @@ MOLTIN_SECRET_KEY=
 
 Once you have the function deployed, take a note of the immutable `now.sh` url.
 
-<!-- You can use this URL to make requests, providing you send along `X-MOLTIN-SECRET-KEY` in the request header. -->
+Next head over to the Shippo [API Settings](https://app.goshippo.com/api) area, add a new webhook with the following details:
 
-Next head over to the Shippo [API Settings](https://app.goshippo.com/api/) area, add a new webhook with the following details;
+* **Event Type**: Track Updated
+* **Mode**: Live
+* **URL**: _URL provided by `now.sh`_
 
-* Event Type: Track Updated
-* Mode: Live
-* URL: _URL provided by `now.sh`_
+Finally you'll need to extend the moltin Orders resource with [Flows](https://moltin.com/content). Head over to the [moltin dashboard](https://dashboard.moltin.com/app/settings/flows) and **create a new Flow**.
+
+* **Name**: Orders
+* **Slug**: `orders`
+* **Description**: _Anything you want_
+* **Enabled**: `true`
+
+Next, edit the Flow and add the following **fields**:
+
+* **Field** Type: `string`
+  **Slug**: `delivery_status`
+  **Name**: Delivery status (managed by Shippo)
+  **Description**: _Anything you want_
+  **Enabled**: `true`
+
+* **Field** Type: `string`
+  **Slug**: `delivery_details`
+  **Name**: Delivery details (managed by Shippo)
+  **Description**: _Anything you want_
+  **Enabled**: `true`
+
+* **Field** Type: `string`
+  **Slug**: `delivery_date`
+  **Name**: Delivery date (managed by Shippo)
+  **Description**: _Anything you want_
+  **Enabled**: `true`
+
+⚠️ Once an `order_status` is set to `DELIVERED` this function will no longer function.
 
 ## 🚀 Deploy
 
