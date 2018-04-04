@@ -40,25 +40,13 @@ Finally you'll need to extend the moltin Orders resource with [Flows](https://mo
 
 Next, edit the Flow and add the following **fields**:
 
-* **Field** Type: `string`
-  **Slug**: `delivery_status`
-  **Name**: Delivery status (managed by Shippo)
-  **Description**: _Anything you want_
-  **Enabled**: `true`
+| Field Type | Slug               | Name                                 | Description         | Enabled |
+| ---------- | ------------------ | ------------------------------------ | ------------------- | ------- |
+| `string`   | `delivery_date`    | Delivery status (managed by Shippo)  | _Anything you want_ | `true`  |
+| `string`   | `delivery_details` | Delivery details (managed by Shippo) | _Anything you want_ | `true`  |
+| `string`   | `delivery_date`    | Delivery date (managed by Shippo)    | _Anything you want_ | `true`  |
 
-* **Field** Type: `string`
-  **Slug**: `delivery_details`
-  **Name**: Delivery details (managed by Shippo)
-  **Description**: _Anything you want_
-  **Enabled**: `true`
-
-* **Field** Type: `string`
-  **Slug**: `delivery_date`
-  **Name**: Delivery date (managed by Shippo)
-  **Description**: _Anything you want_
-  **Enabled**: `true`
-
-⚠️ Once an `order_status` is set to `DELIVERED` this function will no longer function.
+⚠️ Once an `order_status` is set to `DELIVERED` this function will no longer update your order.
 
 ## 🚀 Deploy
 
