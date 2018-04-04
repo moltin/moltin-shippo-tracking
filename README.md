@@ -27,16 +27,15 @@ Once you have the function deployed, take a note of the immutable `now.sh` url.
 
 Next head over to the Shippo [API Settings](https://app.goshippo.com/api) area, add a new webhook with the following details:
 
-* **Event Type**: Track Updated
-* **Mode**: Live
-* **URL**: _URL provided by `now.sh`_
+| Event Type    | Mode   | URL                        |
+| ------------- | ------ | -------------------------- |
+| Track Updated | `Live` | _URL provided by `now.sh`_ |
 
 Finally you'll need to extend the moltin Orders resource with [Flows](https://moltin.com/content). Head over to the [moltin dashboard](https://dashboard.moltin.com/app/settings/flows) and **create a new Flow**.
 
-* **Name**: Orders
-* **Slug**: `orders`
-* **Description**: _Anything you want_
-* **Enabled**: `true`
+| Name   | Slug     | Description         | Enabled |
+| ------ | -------- | ------------------- | ------- |
+| Orders | `orders` | _Anything you want_ | `true`  |
 
 Next, edit the Flow and add the following **fields**:
 
